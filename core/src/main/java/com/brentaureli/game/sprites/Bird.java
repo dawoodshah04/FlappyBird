@@ -29,11 +29,20 @@ public class Bird {
         this.bird = new Texture("bird.png");
     }
 
-    public void update(float dt){
-        velocity.add(0,GRAVITY,0);
-        velocity.scl(dt);
-        position.add(0,velocity.y,0);
+    public void update(float dt) {
+        if (position.y > 0) {
+            velocity.add(0, GRAVITY, 0);
+            velocity.scl(dt);
+            position.add(0, velocity.y, 0);
 
-        velocity.scl(1/dt);
+            if (position.y < 0) {
+                position.y = 0;
+            }
+            velocity.scl(1 / dt);
+        }
     }
+    public void jump(){
+        velocity.y = 250;
+    }
+
 }
